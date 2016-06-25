@@ -3,7 +3,7 @@ package my.game.logic;
 public class Main {
 
 	public static void main(String[] args) {
-		Game game = new Game("Los Toxos ", "Los Soldados de Lauty",90);
+		Game game = new Game("Los Toxos ", "Los Soldados de Lauty",10);
 		game.showScore();
 		game.showTeams();
 		Player scorerTest = game.getHomeTeam().getPlayers().get(0);

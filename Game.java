@@ -21,10 +21,10 @@ public class Game {
 		Position position2 = new Position (25,25);
 		Position position3 = new Position (25,25);
 		Position position4 = new Position (25,25);
-		Player toxico = new Player("Toxico", 12, 90, 55, 63,50,homeTeam, position1);
-		Player lauty = new Player("Lauty", 1, 40, 99, 99,0,homeTeam, position2);
-		Player eduNegro = new Player("Edu el Negro", 4, 99, 55, 99,50,awayTeam, position3);
-		Player gabot = new Player("Gabot", 6, 99, 99, 99,99,awayTeam, position4);
+		Player toxico = new Player("Toxico", 12, 500, 55, 63,50,homeTeam, position1);
+		Player lauty = new Player("Lauty", 1, 300, 99, 99,0,homeTeam, position2);
+		Player eduNegro = new Player("Edu el Negro", 4, 500, 55, 99,50,awayTeam, position3);
+		Player gabot = new Player("Gabot", 6, 500, 99, 99,99,awayTeam, position4);
 		
 		homeTeam.addPlayer(toxico);
 		homeTeam.addPlayer(lauty);

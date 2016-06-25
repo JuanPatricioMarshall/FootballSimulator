@@ -22,6 +22,7 @@ public class Team {
 	
 	public void giveStartBall(){players.get(0).gotBall();} 
 	public void gotBall(){possession = true;}
+	public void lostBall(){possession = false;}
 	
 	public void addPlayer(Player player){
 		players.add(player);
@@ -30,10 +31,9 @@ public class Team {
 	private Player getNearestPlayer(Player player, Team team ){
 		int distance = 1000;
 		Player nearestPlayer = team.getPlayers().get(0);
-		Position myPosition = player.getPosition();
 		for (int i = 0; i < team.getPlayers().size(); i++){
 			Player otherPlayer = team.getPlayers().get(i);
-			int auxDistance = otherPlayer.getPosition().distance(myPosition);
+			int auxDistance = player.getDistanceBetweenPlayers(otherPlayer);
 			if(player.getName().equals(otherPlayer.getName())) continue;
 			if(auxDistance<distance){
 				nearestPlayer = otherPlayer;

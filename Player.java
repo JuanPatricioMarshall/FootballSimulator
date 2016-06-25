@@ -8,6 +8,8 @@ public class Player {
 	final int POS_BY_SPEED_Y = 2;
 	final int POS_BY_SPEED_X = 1;
 	final int RANGE_TIRED = 2;
+	final int RANGE_DEFENSE = 2;
+	final int RANGE_PASS = 4;
 	
 	private String name;
 	private int number;
@@ -55,36 +57,46 @@ public class Player {
 		team.gotBall();
 	}
 	public Position getPosition(){return position;}
-	public void play(Player nearestTeammate, Player nearestopponent, Score score){
+	public void play(Player nearestTeammate, Player nearestOpponent, Score score){
 		
 		RNG rnd = RNG.getInstance();
 		boolean possession = hasBall();
 		int range = (hasBall())? 2:3;
 		int option = rnd.getNumber(range);
-		option = 0;
+		//HardCode the option to test 
+		option = 1;
 		System.out.println(option+"\n");
 		if(possession) System.out.println("I have the ball\n");
 		position.show();
 		System.out.println(name);
-		switch(option){
-			case 0:
-				run(nearestopponent);
-				break;
-			case 1:
-				pass();
-				break;
-			case 2:
-				shoot();
-				break;
-			case 3: 
-				defend();
-				break;
+		if(possession){
+			switch(option){
+				case 0:
+					run(nearestOpponent);
+					break;
+				case 1:
+					pass(nearestTeammate, nearestOpponent);
+					break;
+				default:
+					shoot();
+					break;
+			}
+		}
+		else{
+			switch(option){
+				case 0:
+					run(nearestOpponent);
+					break;
+				default:
+					defend(nearestOpponent);
+					break;
+			}
 		}
 		position.show();
 	}
 	public void run(Player nearestOpponent){
 		if(tiredOut()) {
-			System.out.println(getName()+"\nIm Tired \n");return;
+			System.out.println("\nIm Tired \n");return;
 		}
 		System.out.println("Im running \n");
 		System.out.println("My nearest Opponent is"+nearestOpponent.getName());
@@ -110,14 +122,39 @@ public class Player {
 	}
 	private boolean tiredOut(){return stamina<=0;}
 	
-	public void pass(){
-		System.out.print("Im passing \n");
+	public void pass(Player nearestTeammate, Player nearestOpponent){
+		RNG rnd = RNG.getInstance();
 		
+		System.out.print("Im passing \n");
+		int distanceToPass = getDistanceBetweenPlayers(nearestTeammate);
+		int distanceToDefense = getDistanceBetweenPlayers(nearestOpponent);
+		
+		int defenseLuck = rnd.getNumber(RANGE_DEFENSE );
+		int passLuck = rnd.getNumber(RANGE_PASS);
+		
+		int defenseValue = defenseLuck * ((nearestOpponent.getSpeed()-distanceToDefense));
+		int passValue = passLuck * (getPower()-distanceToPass);
+	
+		if(passValue>= defenseValue){passBall(nearestTeammate); System.out.println("To a teammate\n");}
+		else{passBall(nearestOpponent);System.out.println("Intercepted\n");}
+	}
+	
+	private void passBall(Player otherPlayer){
+		lostBall();
+		otherPlayer.gotBall();
+	}
+	
+	public void lostBall(){
+		possession = false;
+		team.lostBall();
+	}
+	public int getDistanceBetweenPlayers(Player otherPlayer){
+		return otherPlayer.getPosition().distance(position);
 	}
 	public void shoot(){
 		System.out.println("Im shooting \n");
 	}
-	public void defend(){
+	public void defend(Player nearestOpponent){
 		System.out.println("Im defending \n");
 	}
 }
