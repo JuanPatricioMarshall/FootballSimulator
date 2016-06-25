@@ -46,14 +46,14 @@ public class Score {
 		System.out.println(toPrint);
 	}
 	
-	public Player getGoldenBoot(){
+	public void showGoldenBoot(){
 		Enumeration<Player> scorers = this.scorers.keys();
 		Player goldenBoot = scorers.nextElement();
 		while(scorers.hasMoreElements()){
 			Player newGoldenBoot = scorers.nextElement();
 			goldenBoot = (this.scorers.get(goldenBoot)<this.scorers.get(newGoldenBoot)) ? newGoldenBoot : goldenBoot;
 		}
-		return goldenBoot;
+		System.out.println("El goleador del partido ha sido "+goldenBoot.getName()+" con "+this.scorers.get(goldenBoot));
 	}
 	
 }

@@ -18,19 +18,19 @@ public class Player {
 	private int power;
 	private int speed;
 	private boolean possession;
-	private int distance;
+	//private int distance;
 	private Team team;
 	private Position position;
 	private Position enemyGoalPosition;
 	
-	public Player (String name, int number, int stamina, int power, int speed, int distance, Team team, Position position, Position enemyGoalPosition){
+	public Player (String name, int number, int stamina, int power, int speed, /*int distance,*/ Team team, Position position, Position enemyGoalPosition){
 		this.name = name;
 		this.number = number;
 		this.stamina = stamina;
 		this.power = power;
 		this.speed = speed;
 		this.possession = false;
-		this.distance = distance;
+		//this.distance = distance;
 		this.team = team;
 		this.position = position;
 		this.enemyGoalPosition = enemyGoalPosition;
@@ -49,7 +49,7 @@ public class Player {
 	public String getName(){return name;}
 	public Team getTeam(){return team;}
 	public int getNumber(){return number;}
-	public int getDistance(){return distance;}
+	//public int getDistance(){return distance;}
 	public int getStamina(){return stamina;}
 	public int getPower(){return power;}
 	public int getSpeed(){return speed;}
@@ -163,7 +163,7 @@ public class Player {
 		int distanceToGoal = getDistanceToGoal();
 		RNG rnd = RNG.getInstance();
 		int shootLuck = rnd.getNumber(SHOOT_RANGE);
-		int shootChance = (power*shootLuck)-distance;
+		int shootChance = (power*shootLuck)-distanceToGoal;
 		if(shootChance > 0){
 			System.out.println("GOOOOL");
 			System.out.println("El jugador "+name+" ha metido un golazo");

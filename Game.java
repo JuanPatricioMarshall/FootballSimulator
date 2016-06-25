@@ -23,10 +23,11 @@ public class Game {
 		Position position2 = new Position (25,25);
 		Position position3 = new Position (25,25);
 		Position position4 = new Position (25,25);
-		Player toxico = new Player("Toxico", 12, 500, 55, 63,50,homeTeam, position1, awayGoalPosition);
-		Player lauty = new Player("Lauty", 1, 300, 99, 99,0,homeTeam, position2, awayGoalPosition);
-		Player eduNegro = new Player("Edu el Negro", 4, 500, 55, 99,50,awayTeam, position3, homeGoalPosition);
-		Player gabot = new Player("Gabot", 6, 500, 99, 99,99,awayTeam, position4, homeGoalPosition);
+		//new Player(Stirng name, int number, int stamina, int power, int speed, int distance, Team team, Position position, Position enemyGoalPosition
+		Player toxico = new Player("Toxico", 12, 500, 55, 63,homeTeam, position1, awayGoalPosition);
+		Player lauty = new Player("Lauty", 1, 300, 99, 99,homeTeam, position2, awayGoalPosition);
+		Player eduNegro = new Player("Edu el Negro", 4, 500, 55, 99,awayTeam, position3, homeGoalPosition);
+		Player gabot = new Player("Gabot", 6, 500, 99, 99,awayTeam, position4, homeGoalPosition);
 		
 		homeTeam.addPlayer(toxico);
 		homeTeam.addPlayer(lauty);
@@ -66,7 +67,7 @@ public class Game {
 		score.scoreGoal(goal);
 	}
 	public void showGoldenBoot(){
-		System.out.println(score.getGoldenBoot().getName());
+		score.showGoldenBoot();
 	}
 	public void playGame(){
 		for (int minute = 0; minute < minutesToPlay; minute++){
