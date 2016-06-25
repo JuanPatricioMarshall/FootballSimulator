@@ -32,7 +32,7 @@ public class Score {
 		if(scorers.containsKey(scorer))
 			scorers.put(scorer, 1+scorers.get(scorer));
 		else scorers.put(goal.getScorer(), 1);
-		if(goal.getLocality())
+		if(goal.getTeamId().equals(homeTeam.getName()))
 			return homeGoals.add(goal) && homeTeam.getGoals().add(goal);
 		return awayGoals.add(goal) && awayTeam.getGoals().add(goal);
 		

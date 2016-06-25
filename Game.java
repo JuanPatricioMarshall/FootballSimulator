@@ -14,17 +14,19 @@ public class Game {
 		ArrayList<Player> playersHomeTeam = new ArrayList();
 		ArrayList<Player> playersAwayTeam = new ArrayList();
 		
-		homeTeam = new Team(homeTeamId);
-		awayTeam = new Team(awayTeamId);
+		homeTeam = new Team(homeTeamId, this);
+		awayTeam = new Team(awayTeamId, this);
+		Position homeGoalPosition = new Position(0,0);
+		Position awayGoalPosition = new Position(100,100);
 		
 		Position position1 = new Position (25,25);
 		Position position2 = new Position (25,25);
 		Position position3 = new Position (25,25);
 		Position position4 = new Position (25,25);
-		Player toxico = new Player("Toxico", 12, 500, 55, 63,50,homeTeam, position1);
-		Player lauty = new Player("Lauty", 1, 300, 99, 99,0,homeTeam, position2);
-		Player eduNegro = new Player("Edu el Negro", 4, 500, 55, 99,50,awayTeam, position3);
-		Player gabot = new Player("Gabot", 6, 500, 99, 99,99,awayTeam, position4);
+		Player toxico = new Player("Toxico", 12, 500, 55, 63,50,homeTeam, position1, awayGoalPosition);
+		Player lauty = new Player("Lauty", 1, 300, 99, 99,0,homeTeam, position2, awayGoalPosition);
+		Player eduNegro = new Player("Edu el Negro", 4, 500, 55, 99,50,awayTeam, position3, homeGoalPosition);
+		Player gabot = new Player("Gabot", 6, 500, 99, 99,99,awayTeam, position4, homeGoalPosition);
 		
 		homeTeam.addPlayer(toxico);
 		homeTeam.addPlayer(lauty);
@@ -67,9 +69,9 @@ public class Game {
 		System.out.println(score.getGoldenBoot().getName());
 	}
 	public void playGame(){
-		for (int i = 0; i < minutesToPlay; i++){
-			homeTeam.play(awayTeam, score);
-			awayTeam.play(homeTeam, score);
+		for (int minute = 0; minute < minutesToPlay; minute++){
+			homeTeam.play(awayTeam, score, minute );
+			awayTeam.play(homeTeam, score, minute);
 		}
 	}
 }

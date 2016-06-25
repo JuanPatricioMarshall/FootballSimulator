@@ -10,6 +10,7 @@ public class Player {
 	final int RANGE_TIRED = 2;
 	final int RANGE_DEFENSE = 2;
 	final int RANGE_PASS = 4;
+	final int SHOOT_RANGE = 3;
 	
 	private String name;
 	private int number;
@@ -20,8 +21,9 @@ public class Player {
 	private int distance;
 	private Team team;
 	private Position position;
+	private Position enemyGoalPosition;
 	
-	public Player (String name, int number, int stamina, int power, int speed, int distance, Team team, Position position){
+	public Player (String name, int number, int stamina, int power, int speed, int distance, Team team, Position position, Position enemyGoalPosition){
 		this.name = name;
 		this.number = number;
 		this.stamina = stamina;
@@ -31,7 +33,7 @@ public class Player {
 		this.distance = distance;
 		this.team = team;
 		this.position = position;
-		
+		this.enemyGoalPosition = enemyGoalPosition;
 	}
 	public int passChance(){
 		return 0;
@@ -57,14 +59,16 @@ public class Player {
 		team.gotBall();
 	}
 	public Position getPosition(){return position;}
-	public void play(Player nearestTeammate, Player nearestOpponent, Score score){
+	public void play(Player nearestTeammate, Player nearestOpponent, Score score, int minute){
 		
 		RNG rnd = RNG.getInstance();
 		boolean possession = hasBall();
-		int range = (hasBall())? 2:3;
+		//int range = (hasBall())? 2:3;
+		//Hardcoding the range for debugging purposes
+		int range = 4;
 		int option = rnd.getNumber(range);
 		//HardCode the option to test 
-		option = 1;
+		//option = 3;
 		System.out.println(option+"\n");
 		if(possession) System.out.println("I have the ball\n");
 		position.show();
@@ -78,7 +82,7 @@ public class Player {
 					pass(nearestTeammate, nearestOpponent);
 					break;
 				default:
-					shoot();
+					shoot(minute);
 					break;
 			}
 		}
@@ -94,6 +98,9 @@ public class Player {
 		}
 		position.show();
 	}
+	
+	public int getDistanceToGoal(){return position.distance(enemyGoalPosition);}
+	
 	public void run(Player nearestOpponent){
 		if(tiredOut()) {
 			System.out.println("\nIm Tired \n");return;
@@ -151,8 +158,21 @@ public class Player {
 	public int getDistanceBetweenPlayers(Player otherPlayer){
 		return otherPlayer.getPosition().distance(position);
 	}
-	public void shoot(){
+	public void shoot(int minute){
 		System.out.println("Im shooting \n");
+		int distanceToGoal = getDistanceToGoal();
+		RNG rnd = RNG.getInstance();
+		int shootLuck = rnd.getNumber(SHOOT_RANGE);
+		int shootChance = (power*shootLuck)-distance;
+		if(shootChance > 0){
+			System.out.println("GOOOOL");
+			System.out.println("El jugador "+name+" ha metido un golazo");
+			scoreGoal(minute);
+		}
+	}
+	private void scoreGoal(int minute) {
+		team.scoreGoal(this, minute);
+		
 	}
 	public void defend(Player nearestOpponent){
 		System.out.println("Im defending \n");

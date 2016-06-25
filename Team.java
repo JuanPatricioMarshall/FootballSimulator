@@ -8,12 +8,15 @@ public class Team {
 	private ArrayList<Player> players;
 	private boolean possession;
 	private ArrayList<Goal> goals;
+	private Score score;
+	private Game game;
 	
-	public Team (String name){
+	public Team (String name, Game game){
 		this.name = name;
 		this.players = new ArrayList<Player>();
 		possession = false;
 		this.goals = new ArrayList<Goal>();
+		this.game = game;
 	}
 	public String getName (){return name;}
 	public ArrayList<Player> getPlayers(){return players;}
@@ -44,12 +47,12 @@ public class Team {
 		return nearestPlayer;
 	}
 	
-	public void play(Team otherTeam, Score score){
+	public void play(Team otherTeam, Score score, int minute){
 		for(int i = 0; i < players.size();i++){
 			Player player = players.get(i);
 			Player nearestTeammate = getNearestPlayer(player, player.getTeam());
 			Player nearestopponent = getNearestPlayer(player, otherTeam);
-			players.get(i).play(nearestTeammate, nearestopponent, score);
+			players.get(i).play(nearestTeammate, nearestopponent, score, minute);
 		}
 	}
 	public void showPlayers(){
@@ -60,5 +63,9 @@ public class Team {
 	
 		}
 
+	}
+	public void scoreGoal(Player player, int minute) {
+		Goal goal = new Goal(this.name,minute,player);
+		game.scoreGoal(goal);
 	}
 }
