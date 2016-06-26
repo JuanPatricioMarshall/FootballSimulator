@@ -26,7 +26,13 @@ public class Team {
 	public ArrayList<Goal> getGoals(){return goals;}
 	public Position getEnemyGoalPosition(){return enemyGoalPosition;}
 	
-	public void giveStartBall(){players.get(0).gotBall();} 
+	public void giveStartBall(){
+		RNG rnd = RNG.getInstance();
+		int chance = rnd.getNumber(players.size());
+		System.out.println(chance);
+		players.get(chance).gotBall();
+		
+	} 
 	public void gotBall(){possession = true;}
 	public void lostBall(){possession = false;}
 	

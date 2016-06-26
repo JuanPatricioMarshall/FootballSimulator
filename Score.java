@@ -48,6 +48,7 @@ public class Score {
 	
 	public void showGoldenBoot(){
 		Enumeration<Player> scorers = this.scorers.keys();
+		if(!scorers.hasMoreElements()){ System.out.println("No hubo goles en este partido"); return;}
 		Player goldenBoot = scorers.nextElement();
 		while(scorers.hasMoreElements()){
 			Player newGoldenBoot = scorers.nextElement();

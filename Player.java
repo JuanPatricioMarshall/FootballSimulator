@@ -110,7 +110,8 @@ public class Player {
 		}
 		System.out.println("Im running \n");
 		System.out.println("My nearest Opponent is"+nearestOpponent.getName());
-		RNG rnd = RNG.getInstance();
+		//Not using any logic at the moment, for debuging purposes
+		/*RNG rnd = RNG.getInstance();
 		int rndNumber = rnd.getNumber(RANGE_SPEED);
 		int distanceTraveled = position.movePos((POS_BY_SPEED_X*speed*rndNumber)/stamina, (POS_BY_SPEED_Y*speed*rndNumber)/stamina);
 		getTired(distanceTraveled);
@@ -122,6 +123,7 @@ public class Player {
 		int opponentSpd = nearestOpponent.getSpeed();
 		distanceTraveled = nearestOpponent.getPosition().movePos((POS_BY_SPEED_X*opponentSpd*rndNumber2)/nearestOpponent.getStamina(), (POS_BY_SPEED_Y*opponentSpd*rndNumber2)/nearestOpponent.getStamina());
 		nearestOpponent.getTired(distanceTraveled);
+		*/
 	}
 	private void getTired(int distanceTraveled){
 		System.out.println("StartinG stamina: "+stamina);

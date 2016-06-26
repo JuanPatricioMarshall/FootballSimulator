@@ -2,9 +2,12 @@ package my.game.logic;
 
 public class Main {
 
+	static final int MINUTES_TO_PLAY_TEST = 6000;
+	
+	
 	public static void main(String[] args) {
 		
-		Game game = new Game("/home/juampa_94/belatrix/ProjectGameLogic/src/my/game/logic/AllPlayers.txt",30);
+		Game game = new Game("/home/juampa_94/belatrix/ProjectGameLogic/src/my/game/logic/AllPlayers.txt",MINUTES_TO_PLAY_TEST);
 		/*Game game = new Game("Los Toxos", "Los Soldados de Lauty",30);
 		game.showScore();
 		game.showTeams();
