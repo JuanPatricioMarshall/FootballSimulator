@@ -10,18 +10,21 @@ public class Team {
 	private ArrayList<Goal> goals;
 	private Score score;
 	private Game game;
+	private Position enemyGoalPosition;
 	
-	public Team (String name, Game game){
+	public Team (String name, Game game, Position enemyGoalPosition){
 		this.name = name;
 		this.players = new ArrayList<Player>();
 		possession = false;
 		this.goals = new ArrayList<Goal>();
 		this.game = game;
+		this.enemyGoalPosition = enemyGoalPosition;
 	}
 	public String getName (){return name;}
 	public ArrayList<Player> getPlayers(){return players;}
 	public boolean hasBall(){return possession;}
 	public ArrayList<Goal> getGoals(){return goals;}
+	public Position getEnemyGoalPosition(){return enemyGoalPosition;}
 	
 	public void giveStartBall(){players.get(0).gotBall();} 
 	public void gotBall(){possession = true;}
@@ -52,7 +55,7 @@ public class Team {
 			Player player = players.get(i);
 			Player nearestTeammate = getNearestPlayer(player, player.getTeam());
 			Player nearestopponent = getNearestPlayer(player, otherTeam);
-			players.get(i).play(nearestTeammate, nearestopponent, score, minute);
+			player.play(nearestTeammate, nearestopponent, score, minute);
 		}
 	}
 	public void showPlayers(){
@@ -67,5 +70,19 @@ public class Team {
 	public void scoreGoal(Player player, int minute) {
 		Goal goal = new Goal(this.name,minute,player);
 		game.scoreGoal(goal);
+		game.kickOff(name);
+	}
+	public void looseBall() {
+		for(int i = 0; i < players.size();i++){
+			Player player = players.get(i);
+			player.looseBall();
+		}
+
+	}
+	public void resetPositions() {
+		for(int i = 0; i < players.size();i++){
+			Player player = players.get(i);
+			player.resetPositions();
+		}
 	}
 }

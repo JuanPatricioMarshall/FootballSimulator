@@ -1,0 +1,5 @@
+Los Toxicos,0,0,Los Soldados De Lauty,100,100
+true,El Toxico,12,63,55,95,500,25,25
+true,Edu,4,63,55,95,500,30,30
+false,Lauty,4,63,55,95,500,50,50
+false,Gabo,9,63,55,95,500,35,35

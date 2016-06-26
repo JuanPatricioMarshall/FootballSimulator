@@ -17,23 +17,26 @@ public class Player {
 	private int stamina;
 	private int power;
 	private int speed;
+	private int technique;
 	private boolean possession;
 	//private int distance;
 	private Team team;
 	private Position position;
+	private Position initialPosition;
 	private Position enemyGoalPosition;
 	
-	public Player (String name, int number, int stamina, int power, int speed, /*int distance,*/ Team team, Position position, Position enemyGoalPosition){
+	public Player (String name, int number,PlayerStats stats, Team team, Position position){
 		this.name = name;
 		this.number = number;
-		this.stamina = stamina;
-		this.power = power;
-		this.speed = speed;
+		this.stamina = stats.getStamina();
+		this.power = stats.getPower();
+		this.speed = stats.getSpeed();
+		this.technique = stats.getTechnique();
 		this.possession = false;
 		//this.distance = distance;
 		this.team = team;
-		this.position = position;
-		this.enemyGoalPosition = enemyGoalPosition;
+		this.initialPosition = position;
+		this.position = new Position(position.getPosx(),position.getPosY());
 	}
 	public int passChance(){
 		return 0;
@@ -99,7 +102,7 @@ public class Player {
 		position.show();
 	}
 	
-	public int getDistanceToGoal(){return position.distance(enemyGoalPosition);}
+	public int getDistanceToGoal(){return position.distance(team.getEnemyGoalPosition());}
 	
 	public void run(Player nearestOpponent){
 		if(tiredOut()) {
@@ -176,6 +179,13 @@ public class Player {
 	}
 	public void defend(Player nearestOpponent){
 		System.out.println("Im defending \n");
+	}
+	public void looseBall() {
+		possession = false;
+		
+	}
+	public void resetPositions() {
+		Position updatedPosition = new Position(initialPosition.getPosx(), initialPosition.getPosY());
 	}
 }
 
