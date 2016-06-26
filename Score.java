@@ -41,7 +41,7 @@ public class Score {
 	public void printResult()
 	{
 		String toPrint = "";
-		toPrint = toPrint + homeTeam.getName() + Integer.toString(homeGoals.size()) +" - "
+		toPrint = toPrint + homeTeam.getName()+" " + Integer.toString(homeGoals.size()) +" - "
 		+ awayTeam.getName() + " "+ Integer.toString(awayGoals.size()); 
 		System.out.println(toPrint);
 	}

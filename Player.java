@@ -74,7 +74,7 @@ public class Player {
 		//option = 3;
 		System.out.println(option+"\n");
 		if(possession) System.out.println("I have the ball\n");
-		position.show();
+		//position.show();
 		System.out.println(name);
 		if(possession){
 			switch(option){
@@ -99,7 +99,7 @@ public class Player {
 					break;
 			}
 		}
-		position.show();
+		//position.show();
 	}
 	
 	public int getDistanceToGoal(){return position.distance(team.getEnemyGoalPosition());}
@@ -172,6 +172,14 @@ public class Player {
 			System.out.println("El jugador "+name+" ha metido un golazo");
 			scoreGoal(minute);
 		}
+		else{
+			missedShot();
+			System.out.println("Y se va por al lado del palo");
+		}
+	}
+	private void missedShot() {
+		team.missedShot();
+		
 	}
 	private void scoreGoal(int minute) {
 		team.scoreGoal(this, minute);
@@ -186,6 +194,7 @@ public class Player {
 	}
 	public void resetPositions() {
 		Position updatedPosition = new Position(initialPosition.getPosx(), initialPosition.getPosY());
+		this.position = updatedPosition;
 	}
 }
 

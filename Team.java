@@ -54,8 +54,8 @@ public class Team {
 		for(int i = 0; i < players.size();i++){
 			Player player = players.get(i);
 			Player nearestTeammate = getNearestPlayer(player, player.getTeam());
-			Player nearestopponent = getNearestPlayer(player, otherTeam);
-			player.play(nearestTeammate, nearestopponent, score, minute);
+			Player nearestOpponent = getNearestPlayer(player, otherTeam);
+			player.play(nearestTeammate, nearestOpponent, score, minute);
 		}
 	}
 	public void showPlayers(){
@@ -84,5 +84,10 @@ public class Team {
 			Player player = players.get(i);
 			player.resetPositions();
 		}
+	}
+	public void missedShot() {
+		looseBall();
+		boolean condition = name.equals(game.getHomeTeam().getName());
+		game.giveBall(!condition);
 	}
 }
