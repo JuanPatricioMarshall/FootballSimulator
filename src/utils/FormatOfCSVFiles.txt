@@ -1,0 +1,14 @@
+ First line:
+ //TeamName,GoalPositionx,GoalPositiony,TeamName2,GoalPositionx2,GoalPositiony2,FieldHeight,FieldWidth
+ All the rest of the lines:
+ //home,name,number,speed,power,technique,stamina,initialPositionx,initialPositiony
+ //arr[0] = home;
+ //arr[1] = name;
+ //arr[2] = number;
+ //arr[3] = speed;
+ //arr[4] = power;
+ //arr[5] = technique;
+ //arr[6] = stamina;
+ //arr[7] = initialPositionX;
+ //arr[8] = initialPositionY;
+ //home is a boolean that means that they play on the home team(true); or the away Team (false)

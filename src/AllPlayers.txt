@@ -1,0 +1,11 @@
+Los Riquinos,50,0,Soldados De Lauty,50,100,100,100
+false,Mati,6,95,95,95,500,50,50
+false,Fabi,10,88,89,99,500,50,50
+false,El Turco,10,99,90,99,500,50,50
+true,Lauty,13,75,78,79,500,50,50
+false,Edu,4,95,86,87,500,50,50
+true,Juampa,7,68,83,75,500,50,50
+false,Gabo,9,95,96,95,500,50,50
+true,Juanma,3,65,65,58,500,50,50
+true,MatiTh,11,70,80,95,500,50,50
+true,Ricky,2,80,40,40,500,50,50
