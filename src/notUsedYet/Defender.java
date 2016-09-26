@@ -5,6 +5,7 @@ public class Defender extends Jugador {
 	public Defender(String name, int number, int stamina, int power, int speed, int distance) {
 		super(name, number, stamina, power, speed, distance);
 		// TODO Auto-generated constructor stub
+		//Agrego esta linea de comentario al pedo para ver como anda el jenkins
 	}
 
 	@Override
